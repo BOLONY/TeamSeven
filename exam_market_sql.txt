@@ -1,0 +1,22 @@
+-- 중고거래 사이트 예제
+
+
+-- 회원정보 테이블
+create table market_member (
+
+);
+
+-- 판매글 테이블
+create table market_board (
+
+);
+
+--판매글 일련번호 시퀀스
+
+-- 리플 테이블
+create table market_reply (
+
+);
+
+--리플 일련번호 시퀀스
+
