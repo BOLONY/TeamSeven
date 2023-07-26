@@ -11,7 +11,7 @@
 	</select>
 
 	<select id="selectAll" resultType="Board">
-		select * form market_board		
+		select * from market_board		
 	</select>
 
 	<insert id="insertOne" parameterType="Board">
@@ -19,9 +19,17 @@
 		values (boardnum_seq.nextval, #{memberid}, #{title}, #{contents}, #{category})
 	</insert>
 	
-	<select id="selectReply" resultType="Reply">
+	<select id="selectReply" parameterType="int" resultType="Reply">
 		select * from market_board where boardnum = #{boardnum}
 	</select>
+	
+	<delete id="deleteOne" parameterType="int">
+		delete from market_baord where boardnum = #{boardnum}
+	</delete>
 
+	<insert id="insertReply" parameterType="Reply">
+		insert into market_reply (replynum, boardnum, memberid, replytext) 
+		values (replynum_seq.nextval, #{boardnum}, #{memberid}, #{replytext})
+	</insert>
 
 </mapper>

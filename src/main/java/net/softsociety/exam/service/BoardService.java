@@ -21,6 +21,8 @@ public interface BoardService {
 
 	public int deleteBoard(Board b);
 
+	public void writeReply(Reply r);
+
 	
 
 	

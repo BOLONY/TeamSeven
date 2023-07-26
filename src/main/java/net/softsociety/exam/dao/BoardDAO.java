@@ -24,5 +24,7 @@ public interface BoardDAO {
 
 	public int deleteOne(Board b);
 
+	public void insertReply(Reply r);
+
 	
 }

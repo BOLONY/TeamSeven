@@ -44,6 +44,11 @@ public class BoardSeviceImpl implements BoardService {
 		return dao.deleteOne(b);
 	}
 
+	@Override
+	public void writeReply(Reply r) {
+		dao.insertReply(r);
+	}
+
 	
 	
 	

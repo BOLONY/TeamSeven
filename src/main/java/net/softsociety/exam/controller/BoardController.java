@@ -54,12 +54,10 @@ public class BoardController {
 	public String readForm(Model m, @RequestParam(name="boardnum", defaultValue = "0") int boardnum) {
 		Board b = service.readBoard(boardnum);
 		// 댓글 가져오는 기능
-		ArrayList<Reply> r = service.getReplylist(boardnum);
 		if (b == null) {
 			return "redirect:/board/soldHome";
 		}
 		m.addAttribute("board", b);
-		m.addAttribute("reply", r);
 		return "/boardView/readForm";
 	}
 
@@ -77,5 +75,14 @@ public class BoardController {
 	@PostMapping("insertReply")
 	public void insertReply(@AuthenticationPrincipal UserDetails user, Reply r) {
 		r.setMemberid(user.getUsername());
+		service.writeReply(r);
+	}
+	
+	// 리플 읽어오기 기능
+	@ResponseBody
+	@GetMapping("readReply")
+	public ArrayList<Reply> readReply(int boardnum) {
+		ArrayList<Reply> replyList = service.getReplylist(boardnum);
+		return replyList;
 	}
 }

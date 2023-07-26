@@ -37,6 +37,6 @@ public class MemberController {
 	@GetMapping("login")
 	public String login() {
 		
-		return "memberView/loginForm";
+		return "/loginForm";
 	}
 }
