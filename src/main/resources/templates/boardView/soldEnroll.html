@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function check() {
+		let title = document.getElementById('title').value;
+		let contents = document.getElementById('contents').value;
+		
+		//제목을 5자 이내로 입력하면 다음과 같은 대화상자를 출력한다.
+		//제목을 입력하세요.
+		if(title.length < 5) {
+			alert('제목을 입력하세요.');
+			return false;
+		}
+		
+		//글 내용을 5자 이내로 입력하면 다음과 같은 대화상자를 출력한다.
+		//내용을 입력하세요.
+		if(contents.length < 5) {
+			alert('내용을 입력하세요.');
+			return false;
+		}
+
+		return true;
+	}
+</script>
+<style>
+	#title {
+		width : 300px;
+	}
+	
+	#contents {
+		width : 300px;
+		height : 400px;
+	}
+</style>
+</head>
+
+<body>
+	<h1>[ 판매글 등록 ]</h1>
+
+	<!-- 아이디, 이름은 DB의 변수명과 통일 -->
+	<form action = "insertOne" method = "post" onsubmit = "return check()">
+	카테고리	<select id = "category" name = "category">
+				<option value = "computer">컴퓨터</option>
+				<option value = "camera">카메라</option>
+				<option value = "car">자동차</option>
+			</select><br>
+	제목		<input type = "text" id = "title" name = "title"><br>
+	내용		<input type = "text" id = "contents" name = "contents"><br>
+		<input type = "submit" value = "저장">
+	</form>
+</body>
+</html>
