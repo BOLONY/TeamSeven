@@ -16,5 +16,35 @@ import net.softsociety.exam.domain.Reply;
 @Service
 public class BoardSeviceImpl implements BoardService {
 
+	@Autowired
+	BoardDAO dao;
+	
+	@Override
+	public ArrayList<Board> getBoardlist() {
+		return dao.selectAll();
+	}
+	
+	@Override
+	public int writeBoard(Board b) {
+		return dao.insertOne(b);
+	}
 
+	@Override
+	public Board readBoard(int boardnum) {
+		return dao.selectOne(boardnum);
+	}
+
+	@Override
+	public ArrayList<Reply> getReplylist(int boardnum) {
+		return dao.selectReply(boardnum);
+	}
+
+	@Override
+	public int deleteBoard(Board b) {
+		return dao.deleteOne(b);
+	}
+
+	
+	
+	
 }

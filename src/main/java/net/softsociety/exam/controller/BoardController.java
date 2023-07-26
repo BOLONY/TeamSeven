@@ -26,10 +26,56 @@ import net.softsociety.exam.service.BoardService;
 @Controller
 public class BoardController {
 	
+	@Autowired
+	BoardService service;
+	
+	// 판매 정보 게시판 홈화면
 	@GetMapping("soldHome")
 	public String soldList() {
-		// 판매 정보 게시판 홈화면
+		ArrayList<Board> list = service.getBoardlist();
 		return "boardView/soldHome";
 	}
+	
+	// 판매글 입력 페이지로 이동
+	@GetMapping("e")
+	public String e() {	
+		return "boardView/e";
+	}
+	
+	// 판매글 등록
+	@PostMapping("")
+	public String writeBoard(Board b) {
+		service.writeBoard(b);
+		return "redirect:/board/soldPage";
+	}
+	
+	// 글 읽기 기능
+	@GetMapping("readForm")
+	public String readForm(Model m, @RequestParam(name="boardnum", defaultValue = "0") int boardnum) {
+		Board b = service.readBoard(boardnum);
+		// 댓글 가져오는 기능
+		ArrayList<Reply> r = service.getReplylist(boardnum);
+		if (b == null) {
+			return "redirect:/board/soldHome";
+		}
+		m.addAttribute("board", b);
+		m.addAttribute("reply", r);
+		return "/boardView/readForm";
+	}
 
+	// 글 삭제 기능
+	@GetMapping("deleteForm")
+	public String deleteForm(@AuthenticationPrincipal UserDetails user, Board b) {
+		// boardnum을 Board b 객체로 가져와야함
+		b.setMemberid(user.getUsername());
+		service.deleteBoard(b);
+		return "redirect:/board/soldPage";
+	}
+	
+	// 리플 저장 기능
+	@ResponseBody
+	@PostMapping("insertReply")
+	public void insertReply(@AuthenticationPrincipal UserDetails user, Reply r) {
+		r.setMemberid(user.getUsername());
+	}
 }
