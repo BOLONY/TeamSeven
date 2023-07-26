@@ -6,7 +6,8 @@
 
 <!-- 회원정보 저장 -->
 <insert id="insertMember" parameterType="Member">
-	insert into 
+	insert into market_member (memberid, memberpw, membername, phone)
+	values (#{memberid}, #{memberpw}, #{membername}, #{phone})
 </insert>
 
 </mapper>
