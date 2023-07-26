@@ -47,6 +47,9 @@ CREATE TABLE market_board (
   buyerid VARCHAR2(2000),
   CONSTRAINT pk_market_board PRIMARY KEY (boardnum)
 );
+-- 판매글 입력예시
+insert into market_board (boardnum, memberid, title, contents, category)
+values (boardnum_seq.nextval, 'no989', '중고 노트북 팝니다', '흠집업음, 에누리 없이 50만원', '노트북');
 
 -- market_reply 테이블 생성 -- 리플 테이블
 CREATE TABLE market_reply (

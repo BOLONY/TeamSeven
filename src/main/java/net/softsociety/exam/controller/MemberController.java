@@ -32,4 +32,11 @@ public class MemberController {
 		int n = service.joinMember(m);
 		return "redirect:/";
 	}
+	
+	// 로그인 폼으로 이동
+	@GetMapping("login")
+	public String login() {
+		
+		return "memberView/loginForm";
+	}
 }

@@ -5,9 +5,23 @@
 <mapper namespace="net.softsociety.exam.dao.BoardDAO">
 
 <!--판매글 저장 -->
-	<insert id="insertBoard" parameterType="Board">
 
+	<select id="selectOne" parameterType="int" resultType="Board">
+		select * from market_board where boardnum = #{boardnum}
+	</select>
+
+	<select id="selectAll" resultType="Board">
+		select * form market_board		
+	</select>
+
+	<insert id="insertOne" parameterType="Board">
+		insert into market_board (boardnum, memberid, title, contents, category)
+		values (boardnum_seq.nextval, #{memberid}, #{title}, #{contents}, #{category})
 	</insert>
+	
+	<select id="selectReply" resultType="Reply">
+		select * from market_board where boardnum = #{boardnum}
+	</select>
 
 
 </mapper>
