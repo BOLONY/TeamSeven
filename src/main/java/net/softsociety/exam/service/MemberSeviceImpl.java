@@ -13,8 +13,13 @@ public class MemberSeviceImpl implements MemberService {
 	@Autowired
 	MemberDAO dao;
 	
+	@Autowired
+	PasswordEncoder p;
+	
 	@Override
 	public int joinMember(Member m) {
+		String pw = p.encode(m.getMemberpw());
+		m.setMemberpw(pw);
 		return dao.insertMember(m);
 	}
    
