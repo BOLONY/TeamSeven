@@ -1,10 +1,12 @@
+
+--수연샘 요청--
 -- 중고거래 사이트 예제
 
 --판매글 일련번호 시퀀스
 
 --리플 일련번호 시퀀스
 
-==============by yj===============
+--------by yj----------
 -- 시퀀스 생성
 CREATE SEQUENCE memberid_seq
   START WITH 1
@@ -60,3 +62,26 @@ CREATE TABLE market_reply (
   inputdate DATE DEFAULT SYSDATE,
   CONSTRAINT pk_market_reply PRIMARY KEY (replynum)
 );
+
+
+--테스트 데이터 --
+-- market_member 테이블에 테스트 데이터 추가
+INSERT INTO market_member (memberid, memberpw, membername, phone, enabled, rolename)
+VALUES ('user001', 'password001', 'John Doe', '123-4567-8901', 1, 'ROLE_USER');
+
+INSERT INTO market_member (memberid, memberpw, membername, phone, enabled, rolename)
+VALUES ('user002', 'password002', 'Jane Smith', '987-6543-2109', 1, 'ROLE_USER');
+
+-- market_board 테이블에 테스트 데이터 추가
+INSERT INTO market_board (boardnum, memberid, title, contents, inputdate, category, soldout, buyerid)
+VALUES (boardnum_seq.NEXTVAL, 'user001', 'Sample Title 1', 'Sample contents for board 1', SYSDATE, 'computer', 'N', NULL);
+
+INSERT INTO market_board (boardnum, memberid, title, contents, inputdate, category, soldout, buyerid)
+VALUES (boardnum_seq.NEXTVAL, 'user002', 'Sample Title 2', 'Sample contents for board 2', SYSDATE, 'camera', 'N', NULL);
+
+-- market_reply 테이블에 테스트 데이터 추가
+INSERT INTO market_reply (replynum, boardnum, memberid, replytext, inputdate)
+VALUES (replynum_seq.NEXTVAL, 1, 'user002', 'Sample reply for board 1', SYSDATE);
+
+INSERT INTO market_reply (replynum, boardnum, memberid, replytext, inputdate)
+VALUES (replynum_seq.NEXTVAL, 2, 'user001', 'Sample reply for board 2', SYSDATE);

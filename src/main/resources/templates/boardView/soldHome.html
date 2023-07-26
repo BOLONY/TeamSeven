@@ -3,18 +3,29 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>soldHome</title>
 </head>
 <body>
 	<h1>[ 판매 정보 게시판 ]</h1>
-	<p><a th:href="@{/board/soldPage}">판매글 등록</a></p>
+	
+	<p sec:authorize="isAuthenticated()">
+	<a th:href="@{board/soldEnroll}"> 판매글 등록 </a></p>
 	
 	<table>
 		<tr>
-			<td>번호</td>
-			<td>제목</td>
-			<td>작성자</td>
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
 		</tr>
+		
+		<tr th:each="board : ${soldHome}">
+            <td th:text="${board.boardnum}"></td>
+            <td>
+            	<a th:text="${board.title}" th:href ="@{/board/read(boardnum=${board.boardnum})}"></a>
+            </td>
+            <td th:text="${board.memberid}" ></td>
+        </tr>     
 	</table>
+	
 </body>
 </html>
