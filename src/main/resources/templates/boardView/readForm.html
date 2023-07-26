@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://thymeleaf.org/extras/spring-security">
+<head>
+<script th:src="@{/js/jquery-3.6.0.js}"></script>
+<meta charset="UTF-8">
+<title>readForm</title>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	readReply();
+	$("#rBt").click(inssrtReply);
+});
+
+function readReply() {
+	let n = $("#num").val();
+	$.ajax({
+		url:"readReply",
+		type:"get",
+		data:{boardnum:n},
+		dataType:"json",
+		success: function(list) {
+			let str ="<table><tr>";
+			
+			$.each(list,function(idx,r){
+				str += `<td>${r.memberid}</td>
+						<td>${r.replytext}</td>
+						<td>${r.inputdate}</td>`
+			})	
+			str +="</tr></table>";
+			
+			$("#replyBox").html(str);
+		},
+		error: function(e) {
+			console.log(JSON.stringify(e));
+		}
+	});
+}
+
+function insertReply() {
+	let n = $("#num").val();
+	let t = $("inputReply").val();
+	
+	$.ajax({
+		url:"insertReply",
+		type:"post",
+		data:{boardnum:n,replytext:t},
+		success: function() {
+			console.log("리플 입력 성공");
+			readReply();
+		},
+		error: function(e) {
+			console.log(JSON.stringify(e));
+		}
+	});
+}
+</script>
+</head>
+<body>
+
+<div id="box">
+<input type="hidden" th:value=${bd.boardnum}>
+<table>
+<tr>
+	<th>작성자</th>
+	<td th:value="${bd.memberid}"></td>
+</tr>
+<tr>
+	<th>작성일</th>
+	<td th:value="${bd.inputdate}"></td>
+</tr>
+<tr>
+	<th>제목</th>
+	<td th:value="${bd.title}"></td>
+</tr>
+<tr>
+	<th>내용</th>
+	<td th:value="${bd.contents}"></td>
+</tr>
+</table>
+	
+</div>
+	<input type="text" id="inputReply" >
+	<input type="button" id="rBt" value="확인">
+<div id="replyBox">
+
+</div>
+</body>
+</html>
