@@ -6,7 +6,7 @@
 
 <!-- 회원정보 저장 -->
 <insert id="insertMember" parameterType="Member">
-
+	insert into 
 </insert>
 
 </mapper>

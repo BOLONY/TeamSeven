@@ -19,5 +19,17 @@ import net.softsociety.exam.service.MemberService;
 @Controller
 public class MemberController {
 	
+	@Autowired
+	MemberService service;
 
+	//회원가입 폼으로 이동
+	@GetMapping("join")
+	public String join() {
+		return "memberView/joinForm";
+	}
+	
+	public String join(Member m) {
+		int n = service.joinMember(m);
+		return "redirect:/";
+	}
 }
