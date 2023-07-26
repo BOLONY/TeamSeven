@@ -26,5 +26,10 @@ import net.softsociety.exam.service.BoardService;
 @Controller
 public class BoardController {
 	
+	@GetMapping("soldHome")
+	public String soldList() {
+		// 판매 정보 게시판 홈화면
+		return "boardView/soldHome";
+	}
 
 }

@@ -5,10 +5,9 @@
 <mapper namespace="net.softsociety.exam.dao.BoardDAO">
 
 <!--판매글 저장 -->
-<insert id="insertBoard" parameterType="Board">
+	<insert id="insertBoard" parameterType="Board">
 
-</insert>
-
+	</insert>
 
 
 </mapper>

@@ -1,22 +1,59 @@
 -- 중고거래 사이트 예제
 
-
--- 회원정보 테이블
-create table market_member (
-
-);
-
--- 판매글 테이블
-create table market_board (
-
-);
-
 --판매글 일련번호 시퀀스
-
--- 리플 테이블
-create table market_reply (
-
-);
 
 --리플 일련번호 시퀀스
 
+==============by yj===============
+-- 시퀀스 생성
+CREATE SEQUENCE memberid_seq
+  START WITH 1
+  INCREMENT BY 1
+  NOMAXVALUE
+  NOCYCLE;
+
+CREATE SEQUENCE boardnum_seq
+  START WITH 1
+  INCREMENT BY 1
+  NOMAXVALUE
+  NOCYCLE;
+
+CREATE SEQUENCE replynum_seq
+  START WITH 1
+  INCREMENT BY 1
+  NOMAXVALUE
+  NOCYCLE;
+
+-- market_member 테이블 생성 -- 회원정보 테이블
+CREATE TABLE market_member (
+  memberid VARCHAR2(20),
+  memberpw VARCHAR2(100) NOT NULL,
+  membername VARCHAR2(20) NOT NULL,
+  phone VARCHAR2(20) NOT NULL,
+  enabled NUMBER(1) DEFAULT 1,
+  rolename VARCHAR2(20) DEFAULT 'ROLE_USER',
+  CONSTRAINT pk_market_member PRIMARY KEY (memberid)
+);
+
+-- market_board 테이블 생성 -- 판매글 테이블
+CREATE TABLE market_board (
+  boardnum NUMBER,
+  memberid VARCHAR2(20) NOT NULL,
+  title VARCHAR2(200) NOT NULL,
+  contents VARCHAR2(2000) NOT NULL,
+  inputdate DATE DEFAULT SYSDATE,
+  category VARCHAR2(50),
+  soldout CHAR(1) DEFAULT 'N',
+  buyerid VARCHAR2(2000),
+  CONSTRAINT pk_market_board PRIMARY KEY (boardnum)
+);
+
+-- market_reply 테이블 생성 -- 리플 테이블
+CREATE TABLE market_reply (
+  replynum NUMBER,
+  boardnum NUMBER NOT NULL,
+  memberid VARCHAR2(20) NOT NULL,
+  replytext VARCHAR2(500) NOT NULL,
+  inputdate DATE DEFAULT SYSDATE,
+  CONSTRAINT pk_market_reply PRIMARY KEY (replynum)
+);
