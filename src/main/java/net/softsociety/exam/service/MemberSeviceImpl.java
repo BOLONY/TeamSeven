@@ -10,6 +10,13 @@ import net.softsociety.exam.domain.Member;
 @Service
 public class MemberSeviceImpl implements MemberService {
 
+	@Autowired
+	MemberDAO dao;
+	
+	@Override
+	public int joinMember(Member m) {
+		return dao.insertMember(m);
+	}
    
 
 }

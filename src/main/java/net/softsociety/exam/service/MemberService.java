@@ -7,4 +7,6 @@ import net.softsociety.exam.domain.Member;
  */
 public interface MemberService {
 
+	public int joinMember(Member m);
+
 }

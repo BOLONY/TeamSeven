@@ -14,4 +14,15 @@ import net.softsociety.exam.domain.Reply;
 @Mapper
 public interface BoardDAO {
 
+	public ArrayList<Board> selectAll();
+	
+	public int insertOne(Board b);
+
+	public Board selectOne(int boardnum);
+
+	public ArrayList<Reply> selectReply(int boardnum);
+
+	public int deleteOne(Board b);
+
+	
 }
