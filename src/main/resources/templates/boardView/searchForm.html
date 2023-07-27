@@ -7,31 +7,74 @@
 
 <!-- 제이쿼리 문 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+	
  <!-- Ajax 스크립트 추가 -->
     <script>
-        function pagingFormSubmit(page) {
-            // 폼 데이터 가져오기
-            var formData = $('#pagingForm').serialize();
-
-            // 페이지 번호를 폼 데이터에 추가
-            formData += '&page=' + page;
-
+    $(document).ready(function() {
+	readData();
+	
+	
+	$("#sBox").keyup(searchData);
+	
+    })
+        function readData() {
+            
             // Ajax 요청 보내기
             $.ajax({
+                url: "searchAll", // 실제 엔드포인트 URL로 업데이트해야 합니다.
                 type: "GET",
-                url: "list", // 실제 엔드포인트 URL로 업데이트해야 합니다.
-                data: formData,
-                success: function(data) {
-                    // 성공 시, 테이블 본문에 검색 결과 업데이트
-                    $('#searchResults').html(data);
+                dataType: 'json',
+                success: function(list) {
+                    let str = "<table><tr></tr><td>번호</td><td>카테고리</td><td>제목</td>"
+                    
+                    $.each(list,function(idx,data){
+                    	str += `<tr>
+                    			<td>${data.boardnum}</td>
+                    			<td>${data.category}</td>
+                    			<td>${data.title}</td>
+                    			</tr>`
+                    });
+                    
+                    str += '</table>';
+                    
+                    $("#contentsBox").html(str);
                 },
-                error: function(xhr, status, error) {
-                    // 필요에 따라 에러 처리
-                    console.error(error);
+                error: function(e) {
+                  
                 }
             });
         }
+    
+    function searchData() {
+         let c = $("#type").val();
+         let w = $("#sBox").val();
+         
+        // Ajax 요청 보내기
+        $.ajax({
+            url: "searchBoard", // 실제 엔드포인트 URL로 업데이트해야 합니다.
+            type: "GET",
+            data: {category: c, searchWord:w},
+            dataType: 'json',
+            success: function(list) {
+                let str = "<table><tr></tr><td>번호</td><td>카테고리</td><td>제목</td>"
+                
+                $.each(list,function(idx,data){
+                	str += `<tr>
+                			<td>${data.boardnum}</td>
+                			<td>${data.category}</td>
+                			<td>${data.title}</td>
+                			</tr>`
+                });
+                
+                str += '</table>';
+                
+                $("#contentsBox").html(str);
+            },
+            error: function(e) {
+              
+            }
+        });
+    }
     </script>
 
 </head>
@@ -42,41 +85,22 @@
 	<!-- 검색폼 -->
 	<table>
 	<tr>
-	<form id="pagingForm" method="get" th:action="@{/board/list}">
+	<form>
 		 <input type="hidden" name="page" id="page" />
 		 <select id="type" name="type">
-			<option value="title" th:selected="${type} == 'all'">전체</option>
-			<option value="contents" th:selected="${type} == 'computer'">컴퓨터 및 주변기기</option>
-			<option value="memberid" th:selected="${type} == 'camera'">카메라</option>
-			<option value="all" th:selected="${type} == 'car'">자동차 용품</option>
+			<option value="all" id="all" >전체</option>
+			<option value="computer" id="computer" >컴퓨터 및 주변기기</option>
+			<option value="camera" id="camera" >카메라</option>
+			<option value="car" >자동차 용품</option>
 		</select>
-		 <input type="text"  name="searchWord" th:value="${searchWord}">
-		 <input type="button" onclick="pagingFormSubmit(1)" value="검색">
+		 <input type="text" id="sBox" name="searchWord" >
 	</form>
 	</tr>
    </table>
         
-        	
-	<table>
-	 	<tr>
-        	<td>번호</td>
-        	<td>카테고리</td>
-        	<td>제목</td>
-           
-        </tr>
-        
-        <tr th:each="board : ${list}">
-            <td th:text="${board.boardnum}"></td>
-            <td th:text="${board.category}"></td>
-            <td>
-            	<a th:text="${board.title}" th:href ="@{/board/readForm(boardnum=${board.boardnum})}"></a>
-            </td>
-           
-        </tr>       
-            
-   
-    </table>
-	
+   <div id="contentsBox">
+
+   </div>
 	
 	
 

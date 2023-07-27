@@ -115,7 +115,10 @@ public class BoardController {
 	@ResponseBody
 	@GetMapping("searchBoard")
 	public ArrayList<Board> searchBoard(String category, String searchWord) {
+		log.debug("가져온 {},{}",category,searchWord);
 		ArrayList<Board> searchBoard = service.getSearchBoard(category, searchWord);
+		log.debug("가져간 {}",searchBoard);
+		
 		return searchBoard;
 	}
 	
