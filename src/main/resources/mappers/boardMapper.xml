@@ -20,7 +20,7 @@
 	</insert>
 	
 	<select id="selectReply" parameterType="int" resultType="Reply">
-		select * from market_board where boardnum = #{boardnum}
+		select * from market_reply where boardnum = #{boardnum} order by replynum desc
 	</select>
 	
 	<delete id="deleteOne" parameterType="int">

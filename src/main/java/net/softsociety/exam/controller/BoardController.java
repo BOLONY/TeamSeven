@@ -70,7 +70,7 @@ public class BoardController {
 		// boardnum을 Board b 객체로 가져와야함
 		b.setMemberid(user.getUsername());
 		service.deleteBoard(b);
-		return "redirect:/board/soldPage";
+		return "redirect:/board/soldHome";
 	}
 	
 	// 리플 저장 기능

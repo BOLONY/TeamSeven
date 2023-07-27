@@ -9,7 +9,7 @@
 
 $(document).ready(function() {
 	readReply();
-	$("#rBt").click(inssrtReply);
+	$("#rBt").click(insertReply);
 });
 
 function readReply() {
@@ -20,14 +20,14 @@ function readReply() {
 		data:{boardnum:n},
 		dataType:"json",
 		success: function(list) {
-			let str ="<table><tr>";
+			let str ="<table>";
 			
 			$.each(list,function(idx,r){
-				str += `<td>${r.memberid}</td>
+				str += `<tr><td>${r.memberid}</td>
 						<td>${r.replytext}</td>
-						<td>${r.inputdate}</td>`
+						<td>${r.inputdate}</td></tr>`
 			})	
-			str +="</tr></table>";
+			str +="</table>";
 			
 			$("#replyBox").html(str);
 		},
@@ -39,7 +39,7 @@ function readReply() {
 
 function insertReply() {
 	let n = $("#num").val();
-	let t = $("inputReply").val();
+	let t = $("#inputReply").val();
 	
 	$.ajax({
 		url:"insertReply",
@@ -59,7 +59,7 @@ function insertReply() {
 <body>
 
 <div id="box">
-<input type="hidden" th:value=${bd.boardnum}>
+<input id="num" type="hidden" th:value=${bd.boardnum}>
 <table>
 <tr>
 	<th>작성자</th>
@@ -78,10 +78,16 @@ function insertReply() {
 	<td th:text="${bd.contents}"></td>
 </tr>
 </table>
-	
+	<div th:if="${#authentication.name} == ${bd.memberid}">
+		<a th:href="@{/board/delete}">삭제</a>
+	</div>
+	<div th:if="${#authentication.name} != ${bd.memberid}">
+		<a th:href="@{/board/buy}">구매</a>
+	</div>
 </div>
 	<input type="text" id="inputReply" >
 	<input type="button" id="rBt" value="확인">
+	
 <div id="replyBox">
 
 </div>
