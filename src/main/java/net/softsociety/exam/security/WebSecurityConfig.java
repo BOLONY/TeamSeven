@@ -29,6 +29,7 @@ public class WebSecurityConfig {
                 "/image/**",
                 "/css/**",
                 "/board/soldHome",
+                "/member/join",
                 "/js/**").permitAll()
         .anyRequest().authenticated()
         .and()
