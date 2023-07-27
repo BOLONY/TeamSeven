@@ -18,7 +18,7 @@
 			<th>작성자</th>
 		</tr>
 		
-		<tr th:each="board : ${soldHome}">
+		<tr th:each="board : ${list}">
             <td th:text="${board.boardnum}"></td>
             <td>
             	<a th:text="${board.title}" th:href ="@{/board/read(boardnum=${board.boardnum})}"></a>

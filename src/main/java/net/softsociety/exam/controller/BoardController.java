@@ -33,7 +33,8 @@ public class BoardController {
 	@GetMapping("soldHome")
 	public String soldList(Model m) {
 		ArrayList<Board> list = service.getBoardlist();
-		m.addAttribute(list);
+		m.addAttribute("list", list);
+		log.debug("{}", list);
 		return "boardView/soldHome";
 	}
 	
@@ -86,4 +87,6 @@ public class BoardController {
 		ArrayList<Reply> replyList = service.getReplylist(boardnum);
 		return replyList;
 	}
+	
+	// 구매하기 버튼
 }
