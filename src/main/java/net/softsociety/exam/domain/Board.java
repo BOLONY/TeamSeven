@@ -19,6 +19,6 @@ public class Board {
 	String inputdate;
 	String category;
 	char soldout;
-	String byerid;
+	String buyerid;
 
 }
