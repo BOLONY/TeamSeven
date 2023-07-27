@@ -9,12 +9,11 @@
 </head>
 <body>
 	<h1>[ 중고 거래 사이트 ]</h1>
+	<p>이건 이성오님이 남긴 흔적입니다.</p>
 	<ul>
-		<li sec:authorize="!isAuthenticated()"><a th:href="@{/member/join}">회원가입</a></li>
-		<li sec:authorize="!isAuthenticated()"><a th:href="@{/member/login}">로그인</a></li>
-		<li sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}">로그인</a></li>
+		<li><a th:href="@{/member/join}">회원가입</a></li>
+		<li><a th:href="@{/member/login}">로그인</a></li>
 		<li><a th:href="@{/board/soldHome}">판매정보 게시판</a></li>
-		<li><a th:href="@{/board/soldList}">판매상품 검색</a></li>
 		
 		<!-- 이곳에 추가하여 작성하세요. -->
 	</ul>
