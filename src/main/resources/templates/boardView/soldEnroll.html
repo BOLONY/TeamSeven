@@ -42,7 +42,7 @@
 	<h1>[ 판매글 등록 ]</h1>
 
 	<!-- 아이디, 이름은 DB의 변수명과 통일 -->
-	<form action = "insertOne" method = "post" onsubmit = "return check()">
+	<form th:action = "@{/board/soldEnroll}" method = "post" onsubmit = "return check()">
 	카테고리	<select id = "category" name = "category">
 				<option value = "computer">컴퓨터</option>
 				<option value = "camera">카메라</option>
