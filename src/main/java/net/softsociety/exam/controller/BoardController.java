@@ -118,4 +118,12 @@ public class BoardController {
 		ArrayList<Board> searchBoard = service.getSearchBoard(category, searchWord);
 		return searchBoard;
 	}
+	
+	// 검색 페이지가 열렸을 때 모든 목록을 가져옴
+	@ResponseBody
+	@GetMapping("searchAll")
+	public ArrayList<Board> searchAll() {
+		ArrayList<Board> searchList = service.getBoardlist();
+		return searchList;
+	}
 }
