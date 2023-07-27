@@ -32,7 +32,7 @@
 		values (replynum_seq.nextval, #{boardnum}, #{memberid}, #{replytext})
 	</insert>
 	
-	<select id="serachAll" parameterType="hashmap" resultType="Board">
+	<select id="searchAll" parameterType="hashmap" resultType="Board">
 		select * from market_board
 		<where>
 			<if test="type == 'computer'">
