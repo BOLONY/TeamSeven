@@ -11,7 +11,7 @@
 	</select>
 
 	<select id="selectAll" resultType="Board">
-		select * from market_board		
+		select * from market_board order by boardnum desc
 	</select>
 
 	<insert id="insertOne" parameterType="Board">
