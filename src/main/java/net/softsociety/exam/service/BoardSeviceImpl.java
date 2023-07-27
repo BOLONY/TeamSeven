@@ -51,7 +51,10 @@ public class BoardSeviceImpl implements BoardService {
 
 	@Override
 	public ArrayList<Board> getSearchBoard(String category, String searchWord) {
-		return dao.searchAll(category, searchWord);
+		HashMap<String, String> map = new HashMap<>();
+		map.put("category", category);
+		map.put("searchWord", searchWord);
+		return dao.searchAll(map);
 	}
 
 	@Override

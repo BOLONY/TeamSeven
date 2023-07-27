@@ -36,13 +36,13 @@
 		select * from market_board
 		<where>
 			<if test="category == 'computer'">
-			 	upper(category) like 'computer' and upper(title) like upper('%'||#{searchWord}||'%') and soldout = 'N'
+			 	category like 'computer' and upper(title) like upper('%'||#{searchWord}||'%') and soldout = 'N'
 			</if>
 			<if test="category == 'camera'">
-			 	upper(category) like 'camera' and upper(title) like upper('%'||#{searchWord}||'%') and soldout = 'N'
+			 	category like 'camera' and upper(title) like upper('%'||#{searchWord}||'%') and soldout = 'N'
 			</if>
 			<if test="category == 'car'">
-			 	upper(category) like 'car' and upper(title) like upper('%'||#{searchWord}||'%') and soldout = 'N'
+			 	category like 'car' and upper(title) like upper('%'||#{searchWord}||'%') and soldout = 'N'
 			</if>
 			<if test="category == 'all'">
 			 	upper()title like upper('%'||#{searchWord}||'%') and soldout = 'N'
