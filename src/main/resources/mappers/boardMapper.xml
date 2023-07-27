@@ -35,16 +35,16 @@
 	<select id="searchAll" parameterType="hashmap" resultType="Board">
 		select * from market_board
 		<where>
-			<if test="type == 'computer'">
+			<if test="category == 'computer'">
 			 	upper(category) like 'computer' and upper(title) like upper('%'||#{searchWord}||'%') and soldout = 'N'
 			</if>
-			<if test="type == 'camera'">
+			<if test="category == 'camera'">
 			 	upper(category) like 'camera' and upper(title) like upper('%'||#{searchWord}||'%') and soldout = 'N'
 			</if>
-			<if test="type == 'car'">
+			<if test="category == 'car'">
 			 	upper(category) like 'car' and upper(title) like upper('%'||#{searchWord}||'%') and soldout = 'N'
 			</if>
-			<if test="type == 'all'">
+			<if test="category == 'all'">
 			 	upper(title) like upper('%'||#{searchWord}||'%') and soldout = 'N'
 			</if>
 		</where>
