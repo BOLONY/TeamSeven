@@ -63,19 +63,19 @@ function insertReply() {
 <table>
 <tr>
 	<th>작성자</th>
-	<td th:value="${bd.memberid}"></td>
+	<td th:text="${bd.memberid}"></td>
 </tr>
 <tr>
 	<th>작성일</th>
-	<td th:value="${bd.inputdate}"></td>
+	<td th:text="${bd.inputdate}"></td>
 </tr>
 <tr>
 	<th>제목</th>
-	<td th:value="${bd.title}"></td>
+	<td th:text="${bd.title}"></td>
 </tr>
 <tr>
 	<th>내용</th>
-	<td th:value="${bd.contents}"></td>
+	<td th:text="${bd.contents}"></td>
 </tr>
 </table>
 	

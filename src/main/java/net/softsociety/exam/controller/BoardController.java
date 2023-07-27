@@ -61,7 +61,8 @@ public class BoardController {
 		if (b == null) {
 			return "redirect:/board/soldHome";
 		}
-		m.addAttribute("board", b);
+		log.debug("리드 컨 {} ",b);
+		m.addAttribute("bd", b);
 		return "/boardView/readForm";
 	}
 
