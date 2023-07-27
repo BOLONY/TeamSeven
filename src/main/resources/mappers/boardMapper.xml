@@ -24,7 +24,7 @@
 	</select>
 	
 	<delete id="deleteOne" parameterType="int">
-		delete from market_baord where boardnum = #{boardnum}
+		delete from market_board where boardnum = #{boardnum}
 	</delete>
 
 	<insert id="insertReply" parameterType="Reply">
