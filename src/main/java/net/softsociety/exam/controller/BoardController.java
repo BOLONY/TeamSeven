@@ -33,6 +33,8 @@ public class BoardController {
 	@GetMapping("soldHome")
 	public String soldList(Model m) {
 		ArrayList<Board> list = service.getBoardlist();
+
+
 		m.addAttribute("list", list);
 		log.debug("{}", list);
 		return "boardView/soldHome";
