@@ -5,6 +5,35 @@
 <meta charset="UTF-8">
 <title>[ 판매 상품 검색 ]</title>
 
+<!-- 제이쿼리 문 추가 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+ <!-- Ajax 스크립트 추가 -->
+    <script>
+        function pagingFormSubmit(page) {
+            // 폼 데이터 가져오기
+            var formData = $('#pagingForm').serialize();
+
+            // 페이지 번호를 폼 데이터에 추가
+            formData += '&page=' + page;
+
+            // Ajax 요청 보내기
+            $.ajax({
+                type: "GET",
+                url: "list", // 실제 엔드포인트 URL로 업데이트해야 합니다.
+                data: formData,
+                success: function(data) {
+                    // 성공 시, 테이블 본문에 검색 결과 업데이트
+                    $('#searchResults').html(data);
+                },
+                error: function(xhr, status, error) {
+                    // 필요에 따라 에러 처리
+                    console.error(error);
+                }
+            });
+        }
+    </script>
+
 </head>
 <body>
 	<h1>[ 판매 상품 검색 ]</h1>
