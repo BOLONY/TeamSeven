@@ -95,9 +95,12 @@ public class BoardController {
 	
 	// 구매하기 버튼
 	@GetMapping("buy")
-	public void buy(@AuthenticationPrincipal UserDetails user, Board b) {
-		b.setMemberid(user.getUsername());
+	public String buy(@AuthenticationPrincipal UserDetails user, Board b) {
+		b.setBuyerid(user.getUsername());
 		service.buyItem(b);
+		log.debug("{}",b);
+		
+		return"redirect:/board/soldHome";
 	}
 	
 	// 검색 페이지로 이동
