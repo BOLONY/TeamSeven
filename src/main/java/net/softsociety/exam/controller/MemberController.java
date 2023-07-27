@@ -28,7 +28,8 @@ public class MemberController {
 		return "memberView/joinForm";
 	}
 	
-	@PostMapping
+	//회원가입 처리
+	@PostMapping("join")
 	public String join(Member m) {
 		int n = service.joinMember(m);
 		return "redirect:/";
