@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>[ 판매 상품 검색 ]</title>
+</head>
+<body>
+	<h1>[ 판매 상품 검색 ]</h1>
+
+	
+	<!-- 검색폼 -->
+	<table>
+	<tr>
+	<form id="pagingForm" method="get" th:action="@{/board/list}">
+		<input type="hidden" name="page" id="page" />
+		<select id="type" name="type">
+			<option value="title" th:selected="${type} == 'title'">전체</option>
+			<option value="contents" th:selected="${type} == 'contents'">컴퓨터 및 주변기기</option>
+			<option value="memberid" th:selected="${type} == 'memberid'">카메라</option>
+			<option value="all" th:selected="${type} == 'all'">자동차 용품</option>
+		</select>
+		<input type="text"  name="searchWord" th:value="${searchWord}">
+		<input type="button" onclick="pagingFormSubmit(1)" value="검색">
+	</form>
+	</tr>
+	
+	 <tr>
+        	<td>번호</td>
+        	<td>카테고리</td>
+        	<td>제목</td>
+           
+        </tr>
+        </table>
+        
+        	
+	<table>
+        
+        <tr th:each="board : ${list}">
+            <td th:text="${board.boardnum}" class="center"></td>
+            <td><!-- @{/board/read(boardnum=${board.boardnum})} -->
+            	<a th:text="${board.title}" th:href ="@{/board/read(boardnum=${board.boardnum})}"></a>
+            </td>
+            <!--<td><a th:href="@{/}">[[${board.title}]]</a></td>  -->
+            <td th:text="${board.memberid}" class="center"></td>
+            <td th:text="${board.hits}" class="center"></td>
+            <td th:text="${board.inputdate}"></td>
+        </tr>       
+            
+   
+    </table>
+	
+	
+	
+
+</body>
+</html>

@@ -41,13 +41,13 @@ public class BoardController {
 	}
 	
 	// 판매글 입력 페이지로 이동
-	@GetMapping("e")
+	@GetMapping("soldEnroll")
 	public String e() {	
-		return "boardView/e";
+		return "soldEnroll/e";
 	}
 	
 	// 판매글 등록
-	@PostMapping("")
+	@PostMapping("soldEnroll")
 	public String writeBoard(Board b) {
 		service.writeBoard(b);
 		return "redirect:/board/soldPage";

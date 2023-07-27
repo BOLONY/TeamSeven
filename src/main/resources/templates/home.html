@@ -14,7 +14,7 @@
 		<li sec:authorize="!isAuthenticated()"><a th:href="@{/member/login}">로그인</a></li>
 		<li sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}">로그아웃</a></li>
 		<li><a th:href="@{/board/soldHome}">판매정보 게시판</a></li>
-		<li><a th:href="@{/board/soldSearch}">판매상품 검색</a></li>
+		<li><a th:href="@{/board/searchForm}">판매상품 검색</a></li>
 		
 		<!-- 이곳에 추가하여 작성하세요. -->
 	</ul>
