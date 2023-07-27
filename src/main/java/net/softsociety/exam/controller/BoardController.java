@@ -33,6 +33,7 @@ public class BoardController {
 	@GetMapping("soldHome")
 	public String soldList() {
 		ArrayList<Board> list = service.getBoardlist();
+		log.debug("{}", list);
 		return "boardView/soldHome";
 	}
 	
