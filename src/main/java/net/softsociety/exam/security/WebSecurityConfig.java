@@ -26,6 +26,7 @@ public class WebSecurityConfig {
         .authorizeRequests()
         .antMatchers(
         		"/",
+        		"/board/readForm",
                 "/image/**",
                 "/css/**",
                 "/board/soldHome",
