@@ -39,9 +39,9 @@ public class BoardController {
 	}
 	
 	// 판매글 입력 페이지로 이동
-	@GetMapping("e")
-	public String e() {	
-		return "boardView/e";
+	@GetMapping("insertOne")
+	public String insertOne() {	
+		return "boardView/soldEroll";
 	}
 	
 	// 판매글 등록
@@ -90,4 +90,20 @@ public class BoardController {
 	}
 	
 	// 구매하기 버튼
+	
+	// 검색 페이지로 이동
+	@GetMapping("searchForm")
+	public String searchForm (Model m) {
+		ArrayList<Board> list = service.getBoardlist();
+		m.addAttribute("list", list);
+		return "boardView/searchForm";
+	}
+	
+	// 검색하기
+	@ResponseBody
+	@GetMapping("searchBoard")
+	public ArrayList<Board> searchBoard(String category, String searchWord) {
+		ArrayList<Board> searchBoard = service.getSearchBoard(category, searchWord);
+		return searchBoard;
+	}
 }

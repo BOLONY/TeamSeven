@@ -49,6 +49,13 @@ public class BoardSeviceImpl implements BoardService {
 		dao.insertReply(r);
 	}
 
+	@Override
+	public ArrayList<Board> getSearchBoard(String category, String searchWord) {
+		return dao.searchAll(category, searchWord);
+	}
+
+	
+
 	
 	
 	

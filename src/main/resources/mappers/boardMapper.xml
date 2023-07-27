@@ -31,5 +31,24 @@
 		insert into market_reply (replynum, boardnum, memberid, replytext) 
 		values (replynum_seq.nextval, #{boardnum}, #{memberid}, #{replytext})
 	</insert>
+	
+	<select id="serachAll" parameterType="hashmap" resultType="Board">
+		select * from market_board
+		<where>
+			<if test="type == 'computer'">
+			 	upper(category) like 'computer' and upper(title) like upper('%'||#{searchWord}||'%')
+			</if>
+			<if test="type == 'camera'">
+			 	upper(category) like 'camera' and upper(title) like upper('%'||#{searchWord}||'%')
+			</if>
+			<if test="type == 'car'">
+			 	upper(category) like 'car' and upper(title) like upper('%'||#{searchWord}||'%')
+			</if>
+			<if test="type == 'all'">
+			 	upper(title) like upper('%'||#{searchWord}||'%')
+			</if>
+		</where>
+		order by boardnum desc
+	</select>
 
 </mapper>

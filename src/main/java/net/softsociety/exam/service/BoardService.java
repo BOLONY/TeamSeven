@@ -23,6 +23,8 @@ public interface BoardService {
 
 	public void writeReply(Reply r);
 
+	public ArrayList<Board> getSearchBoard(String category, String searchWord);
+
 	
 
 	

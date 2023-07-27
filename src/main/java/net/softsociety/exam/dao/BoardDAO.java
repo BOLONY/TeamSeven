@@ -26,5 +26,6 @@ public interface BoardDAO {
 
 	public void insertReply(Reply r);
 
+	public ArrayList<Board> searchAll(String category, String searchWord);
 	
 }
