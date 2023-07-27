@@ -66,11 +66,12 @@ public class BoardController {
 	}
 
 	// 글 삭제 기능
-	@GetMapping("deleteForm")
+	@GetMapping("delete")
 	public String deleteForm(@AuthenticationPrincipal UserDetails user, Board b) {
 		// boardnum을 Board b 객체로 가져와야함
 		b.setMemberid(user.getUsername());
 		service.deleteBoard(b);
+		log.debug("딜리트 {}",b);
 		return "redirect:/board/soldHome";
 	}
 	

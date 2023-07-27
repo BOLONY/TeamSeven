@@ -79,7 +79,7 @@ function insertReply() {
 </tr>
 </table>
 	<div th:if="${#authentication.name} == ${bd.memberid}">
-		<a th:href="@{/board/delete}">삭제</a>
+		<a th:href="@{/board/delete(boardnum=${bd.boardnum})}">삭제</a>
 	</div>
 	<div th:if="${#authentication.name} != ${bd.memberid}">
 		<a th:href="@{/board/buy}">구매</a>
