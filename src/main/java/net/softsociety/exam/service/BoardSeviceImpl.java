@@ -54,9 +54,11 @@ public class BoardSeviceImpl implements BoardService {
 		return dao.searchAll(category, searchWord);
 	}
 
-	
+	@Override
+	public void buyItem(Board b) {
+		dao.buyOne(b);
+	}
 
-	
 	
 	
 }

@@ -94,6 +94,11 @@ public class BoardController {
 	}
 	
 	// 구매하기 버튼
+	@GetMapping("buy")
+	public void buy(@AuthenticationPrincipal UserDetails user, Board b) {
+		b.setMemberid(user.getUsername());
+		service.buyItem(b);
+	}
 	
 	// 검색 페이지로 이동
 	@GetMapping("searchForm")

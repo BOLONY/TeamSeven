@@ -51,4 +51,8 @@
 		order by boardnum desc
 	</select>
 
+	<update id="buyOne" parameterType="Board">
+		update market_board set buyerid = #{buyerid}, soldout = 'Y' where boardnum = #{boardnum}
+	</update>
+
 </mapper>

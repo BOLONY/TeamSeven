@@ -25,6 +25,8 @@ public interface BoardService {
 
 	public ArrayList<Board> getSearchBoard(String category, String searchWord);
 
+	public void buyItem(Board b);
+
 	
 
 	
