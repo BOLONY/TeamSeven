@@ -39,16 +39,17 @@ public class BoardController {
 	}
 	
 	// 판매글 입력 페이지로 이동
-	@GetMapping("e")
-	public String e() {	
-		return "boardView/e";
+	@GetMapping("soldEnroll")
+	public String insertOne() {	
+		return "boardView/soldEnroll";
 	}
 	
 	// 판매글 등록
-	@PostMapping("")
-	public String writeBoard(Board b) {
+	@PostMapping("soldEnroll")
+	public String insertOne(@AuthenticationPrincipal UserDetails user, Board b) {
+		b.setMemberid(user.getUsername());
 		service.writeBoard(b);
-		return "redirect:/board/soldPage";
+		return "redirect:/board/soldHome";
 	}
 	
 	// 글 읽기 기능
