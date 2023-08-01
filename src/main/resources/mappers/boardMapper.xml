@@ -45,7 +45,7 @@
 			 	category like 'car' and upper(title) like upper('%'||#{searchWord}||'%') and soldout = 'N'
 			</if>
 			<if test="category == 'all'">
-			 	upper()title like upper('%'||#{searchWord}||'%') and soldout = 'N'
+			 	upper(title)like upper('%'||#{searchWord}||'%') and soldout = 'N'
 			</if>
 		</where>
 		order by boardnum desc
