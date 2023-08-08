@@ -19,6 +19,7 @@ public interface BoardService {
 	// 댓글 불러오기 기능
 	public ArrayList<Reply> getReplylist(int boardnum);
 
+	// 글 삭제 기능
 	public int deleteBoard(Board b);
 
 	public void writeReply(Reply r);
